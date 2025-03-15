@@ -1,0 +1,91 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% load humanize %}
+{% load filter_score %}
+{% block title %}Матчи{% endblock %}
+
+{% block content %}
+    <div class="main_detail_matches">
+        {% if match %}
+            <div class="row">
+                <div class="tournament">
+                    <a href="{% url 'detail_tour' match.tournament.id %}" class="link-tour">
+                        <img src="{{ match.game.icon.url }}" alt="game" class="game-icon">
+                        <div class="tour-name">{{ match.tournament.name }}</div>
+                    </a>
+                    <div class="row-info">
+                        <div class="date">
+                            <div class="date-text">Дата проведения</div>
+                            <div class="dt-info">{{ match.tournament.start_date|date:"d.m.Y" }} - {{ match.tournament.end_date|date:"d.m.Y" }}</div>
+                        </div>
+                        <div class="sum">
+                            <div class="sum-text">Сумма призовых</div>
+                            <div class="st-info">${{ match.tournament.sum_prize|intcomma }}</div>
+                        </div>
+                        <div class="place">
+                            <div class="place-text">Место проведения</div>
+                            <div class="pt-info">{{ match.tournament.location }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="teams">
+                    <div class="team-name">Игроки {{ match.team_one.name }}</div>
+                    {% for player_team_one in match.team_one.players.all %}
+                        <a href="{% url 'detail_players' player_team_one.id %}" class="main-block-player">
+                            <img src="{{ player_team_one.photo.url }}" alt="player_team_one photo" class="photo-player">
+                            <div class="player-name">
+                                <div class="img-name">
+                                    <img src="{{ player_team_one.icon_country.url }}" alt="country" class="country-player">
+                                    <div class="nickname">{{ player_team_one.nickname }}</div>
+                                </div>
+                                <div class="name">{{ player_team_one.fio }}</div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+                <div class="match-info">
+                    <div class="center-block">
+                        <div class="game-name">{{ match.game.name }}</div>
+                        <div class="block-teams">{{ match.team_one }} vs {{ match.team_two }}</div>
+                        <div class="tournament-name">{{ match.tournament.name }}</div>
+                    </div>
+                    <div class="main-table">
+                        <a href="{% url 'detail_teams' match.team_one.id %}" class="team-one">
+                            <img src="{{ match.team_one.icon.url }}" alt="team_one icon" class="icon-team">
+                            <div class="team-one-name">{{ match.team_one.name }}</div>
+                        </a>
+                        <div class="score">
+                            {% if match.date.date == today %}
+                                0 : 0
+                            {% else %}
+                                {{ match.score|format_score }}
+                            {% endif %}
+                        </div>
+                        <a href="{% url 'detail_teams' match.team_two.id %}" class="team-two">
+                            <img src="{{ match.team_two.icon.url }}" alt="team_two icon" class="icon-team">
+                            <div class="team-two-name">{{ match.team_two.name }}</div>
+                        </a>
+                    </div>
+                    <div class="date">{{ match.date|date:"d.m.y" }} в {{ match.date|date:"H:i" }}</div>
+                </div>
+                <div class="teams">
+                    <div class="team-name">Игроки {{ match.team_two.name }}</div>
+                    {% for player_team_two in match.team_two.players.all %}
+                        <a href="{% url 'detail_players' player_team_two.id %}" class="main-block-player">
+                            <img src="{{ player_team_two.photo.url }}" alt="player_team_two photo" class="photo-player">
+                            <div class="player-name">
+                                <div class="img-name">
+                                    <img src="{{ player_team_two.icon_country.url }}" alt="country" class="country-player">
+                                    <div class="nickname">{{ player_team_two.nickname }}</div>
+                                </div>
+                                <div class="name">{{ player_team_two.fio }}</div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <div style="color: black; text-align: center">МАТЧЕЙ НЕТ</div>
+        {% endif %}
+    </div>
+{% endblock %}

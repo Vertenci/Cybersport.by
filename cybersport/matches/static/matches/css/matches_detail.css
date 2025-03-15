@@ -1,0 +1,250 @@
+.main_detail_matches {
+    float: left;
+    max-width: 66%;
+    width: 100%;
+    margin-left: 29%;
+    margin-bottom: 75px;
+    margin-top: 75px;
+    background-color: rgb(226, 226, 226);
+    padding: 20px;
+    border: 2px solid #737373;
+    border-radius: 8px;
+}
+
+.main_detail_matches .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.main_detail_matches .game-icon {
+    width: 20px;
+    border-radius: 2px;
+}
+
+.main_detail_matches .tournament {
+    display: flex;
+    align-items: left;
+    background-color: rgb(255, 255, 255);
+    width: calc(100% - 20px);
+    border-radius: 8px;
+    padding: 10px;
+    margin-left: 10px;
+    border: 1px solid #dadada;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.main_detail_matches .tournament .tour-name {
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.main_detail_matches .tournament .link-tour {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    width: calc(17%);
+    transition: color .3s ease;
+}
+
+.main_detail_matches .tournament .link-tour:hover {
+    color: #0eba17;
+}
+
+.main_detail_matches .tournament .row-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin-top: 20px;
+}
+.row-info .sum,
+.row-info .place,
+.row-info .date {
+    display: block;
+    width: calc(25%);
+}
+
+.sum .sum-text,
+.place .place-text,
+.date .date-text {
+    color: #828282;
+    font-size: 17px;
+}
+
+.sum .st-info,
+.place .pt-info,
+.date .dt-info {
+    font-weight: 500;
+}
+
+.teams {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #dadada;
+    border-radius: 8px;
+    display: flex;
+    margin-left: 10px;
+    width: calc(25% - 13.333px);
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex-direction: column;
+}
+
+.match-info {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #dadada;
+    border-radius: 8px;
+    display: flex;
+    margin-left: 10px;
+    width: calc(50% - 13.333px);
+    flex-direction: column;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.second-team .team-name,
+.teams .team-name {
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.teams .main-block-player {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.teams .main-block-player .photo-player {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border: 1px solid #737373;
+    border-radius: 5px;
+}
+
+.teams .main-block-player .player-name .img-name .country-player {
+    width: 25px;
+    height: 20px;
+    object-fit: cover;
+}
+
+.teams .main-block-player .player-name {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.teams .main-block-player .player-name .name {
+    transition: none;
+    color: #5e5e5e;
+}
+
+.teams .main-block-player .img-name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.teams .main-block-player .img-name .nickname {
+    font-weight: 700;
+    margin-left: 5px;
+    transition: color .3s ease;
+}
+
+.teams .main-block-player:hover {
+    color: #0eba17;
+    text-decoration: none;
+}
+
+.main_detail_matches .match-info .center-block {
+    display: block;
+    width: calc(100%);
+    text-align: center;
+    margin-top: 15px;
+}
+
+.center-block .game-name {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.center-block .block-teams {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.center-block .tournament-name {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.match-info .main-table {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.main-table .team-one,
+.main-table .team-two {
+    width: calc(33.333%);
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    cursor: pointer;
+    transition: color .3s ease;
+}
+
+.main-table .team-two:hover,
+.main-table .team-one:hover {
+    color: #0eba17;
+    text-decoration: none;
+}
+
+.main-table .score {
+    width: calc(33.333%);
+    font-weight: 700;
+    font-size: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.team-two .icon-team,
+.team-one .icon-team {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;  
+}
+
+.team-one .team-one-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.team-two .team-two-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 10px;
+
+}
+
+.match-info .date {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}

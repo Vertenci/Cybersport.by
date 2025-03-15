@@ -1,0 +1,173 @@
+.detail-team .members {
+    margin-top: 10px;
+    width: 100%;
+    border: 1px solid #dadada;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-team .composition {
+    color: black;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.detail-team .table {
+    border-top: 1px solid #dadada;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
+.detail-team .some-photo {
+    width: 5.69%;
+}
+
+.detail-team .photo {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #dadada;
+    padding: 0;
+}
+
+.detail-team .element {
+    border-bottom: 1px solid #dadada;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    transition: border 0.4s ease, border-radius 0.2s ease;
+    text-decoration: none;
+}
+
+.detail-team .element:hover {
+
+    border: 1px solid #4caf50;
+    border-radius: 5px;
+}
+
+
+.detail-team .nickname-fio {
+    width: 30%;
+    margin-left: 1.5%;
+    padding: 0;
+}
+
+.detail-team .country-player {
+    width: 18px;
+    height: 18px;
+    object-fit: cover;
+    padding: 0;
+}
+
+.detail-team .country-nickname {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.detail-team .fio {
+    padding: 0;
+    color: #888888;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.detail-team .nickname {
+    margin-left: 10px;
+    padding: 0;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.detail-team .date-joined {
+    width: 20%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.detail-team .date-joined-text {
+    padding: 0;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.detail-team .djt-info {
+    padding: 0;
+    color: #888888;
+    font-weight: 400;
+    font-size: 17px;
+}
+
+.detail-team .progress-bar-players {
+    width: 100%;
+    height: 10px;
+    border-radius: 8px;
+    display: flex;
+    overflow: hidden;
+    flex-direction: row;
+    background-color: #e0e0e0;
+}
+
+.detail-team .progress-segment-players {
+    height: 100%;
+    display: inline-block;
+    
+}
+
+.detail-team .progress-segment.wins-players {
+    background-color: #4caf50;
+}
+
+.detail-team .progress-segment.loses-players {
+    background-color: #f44336;
+}
+
+.detail-team .progress-segment.draws-players {
+    background-color: #888888;
+}
+
+.detail-team .stats-text-players {
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.detail-team .stats-text-players .wins-players {
+    color: #4caf50;
+}
+
+.detail-team .stats-text-players .loses-players {
+    color: #f44336;
+}
+
+.detail-team .stats-text-players .draws-players {
+    color: #888888;
+}
+
+.detail-team .count_of_matches-players {
+    color: black;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.detail-team .statistic-players {
+    width: 43%;
+}
+
+.detail-team .statistic-block-players {
+    padding: 0;
+}
+

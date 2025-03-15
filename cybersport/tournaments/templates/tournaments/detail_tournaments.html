@@ -1,0 +1,66 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}{{ tournament.name }}{% endblock %}
+
+{% block content %}
+    <div class="main_tour">
+        {% if tournament %}
+            <div class="row">
+                <div class="name-description">
+                    <h3>{{ tournament.name }}</h3>
+                    <div class="description">{{ tournament.description }}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="date-prize-location">
+                    <div class="date">
+                        <div class="date-text">Дата</div>
+                        <div class="dt-info">{{ tournament.start_date|date:"d.m.Y" }} - {{ tournament.end_date|date:"d.m.Y" }}</div>
+                    </div>
+                    <div class="prize">
+                        <div class="prize-text">Сумма призовых</div>
+                        <div class="pt-info">{{ tournament.sum_prize|intcomma }}</div>
+                    </div>
+                    <div class="location">
+                        <div class="location-text">Место проведения</div>
+                        <div class="lt-info">{{ tournament.location }}</div>
+                    </div>
+                    <img src="{{ tournament.game.icon.url }}" alt="game">
+                </div>
+            </div>
+            <div class="row">
+                <div class="members">Участники</div>
+            </div>
+            <div class="row">
+                <div class="info-teams">
+                    {% for team in tournament.teams.all %}
+                        <div class="info-team">
+                            <div class="block-icon-name">
+                                <img class="team-icon" src="{{ team.icon.url }}" alt="icon-team">
+                                <h3 class="team-name">{{ team.name }}</h3>
+                            </div>
+                            <div class="players">
+                                {% for player in team.players.all %}
+                                    <div class="icon-team-rfn">
+                                        <img class="icon-members" src="{{ player.icon_country.url }}" alt="icon country members">
+                                        <div class="row-fio-nick">
+                                            <div class="fio">{{ player.fio }} |&nbsp</div>
+                                            <div class="nickname">{{ player.nickname }}</div>
+                                        </div>
+                                    </div>
+                                {% empty %}
+                                    <p>Игроков нет</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% empty %}
+                        <p style="color: black;">Команд нет</p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <p style="color: black; text-align: center;">Турниров нет</p>
+        {% endif %}
+    </div>
+{% endblock %}

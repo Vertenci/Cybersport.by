@@ -1,0 +1,80 @@
+body {
+    background: no-repeat center center fixed;
+    background-size: cover;
+}
+
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #181818;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #c0ffc6;
+    border-radius: 6px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #80ff80;
+}
+
+/* #181818ef */
+/* #4d4d4d */
+
+aside {
+    float: left;
+    background: #ffffff0d;
+    width: calc(24%);
+    padding: 2.5%;
+    height: calc(100vh);
+    color: #ffffff;
+    border-right: 5px solid #ffffff67;
+    position: fixed;
+    backdrop-filter: blur(20px);
+}
+
+aside img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    float: left;
+}
+
+aside .logo {
+    font-size: 29px;
+    margin-left: 10px;
+    font-weight: bold;
+    position: relative;
+    top: 10px;
+}
+
+aside ul {
+    list-style: none;
+    margin-top: 100px;
+    font-weight: 600;
+}
+
+aside ul a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+aside ul li {
+    color: #ffffff;
+    display: block;
+    margin-top: 15px;
+    transition: transform .2s ease, color .2s ease;
+}
+
+aside ul li:hover, aside ul a:hover {
+    color: #03d20e;
+    text-decoration: none;
+    transform: scale(1.03);
+}
+
+.admin-panel {
+    color: rgb(255, 0, 0);
+}

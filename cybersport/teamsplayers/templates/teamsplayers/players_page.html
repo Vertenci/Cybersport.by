@@ -1,0 +1,59 @@
+{% extends 'teamsplayers/layout_teamsplayers.html' %}
+{% load static %}
+{% load humanize %}
+{% block title_features %}Игроки{% endblock %}
+{% block context %}
+    <div class="players_block">
+        <div class="table">
+            <div class="row-player">Игрок</div>
+            <div class="row-game">Дисциплина</div>
+            <div class="row-team">Команда</div>
+            <div class="row-statistic">Победы/Поражения</div>
+            <div class="row-prize">Призовые</div>
+        </div>
+        {% if players %}
+            {% for el in players %}
+                <div class="element">
+                    <div class="number">{{ forloop.counter }}</div>
+                    <a href="{% url 'detail_players' el.id %}" class="player">
+                        <img src="{{ el.photo.url }}" alt="photo player" class="photo-player">
+                        <div class="icon-nick-fio">
+                            <div class="icon-nick">
+                                <img src="{{ el.icon_country.url }}" alt="country icon" class="counry-player">
+                                <div class="nickname">{{ el.nickname }}</div>
+                            </div>
+                            <div class="fio">{{ el.fio }}</div>
+                        </div>
+                    </a>
+                    <div class="game-block-inplayers">
+                        <img class="game" src="{{ el.game.icon.url }}" alt="icon game">
+                    </div>
+                    <div class="team-icon-inplayers">
+                        <img src="{{ el.team.icon.url }}" alt="icon team" class="icon-team">
+                    </div>
+                    <div class="statistic-inplayers">
+                        <div class="statistic-block-inplayers">
+                            <div class="count_of_matches-inplayers">Всего матчей: {{ el.total_matches }}</div>
+                            <div class="progress-bar-inplayers">
+                                <div class="progress-bar-inplayers">
+                                    <div class="progress-segment wins-inplayers" style="width: {{ el.win_percent|floatformat:0 }}%;"></div>
+                                    <div class="progress-segment draws-inplayers" style="width: {{ el.draw_percent|floatformat:0 }}%;"></div>
+                                    <div class="progress-segment loses-inplayers" style="width: {{ el.lose_percent|floatformat:0 }}%;"></div>
+                                </div>
+                            </div>
+                            <div class="stats-text-inplayers">
+                                <span class="wins-inplayers">{{ el.wins }} ({{ el.win_percent|floatformat:0 }}%)</span> /
+                                <span class="draws-inplayers">{{ el.draws }} ({{ el.draw_percent|floatformat:0 }}%)</span> /
+                                <span class="loses-inplayers">{{ el.loses }} ({{ el.lose_percent|floatformat:0 }}%)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prize">$ {{ el.sum_prize|intcomma}}</div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div style="color: black; text-align: center; font-size: 17px">Игроков нет</div>
+        {% endif %}
+    </div>
+
+{% endblock %}

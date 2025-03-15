@@ -1,0 +1,48 @@
+{% extends 'teamsplayers/layout_teamsplayers.html' %}
+{% load static %}
+{% load humanize %}
+{% block title_features %}Команды{% endblock %}
+{% block context %}
+    <div class="teams_block">
+        <div class="table">
+            <div class="row-team">Команда</div>
+            <div class="row-game">Дисциплина</div>
+            <div class="row-statistic">Победы/Поражения</div>
+            <div class="row-prize">Призовые</div>
+        </div>
+        {% if teams %}
+            {% for el in teams %}
+                <div class="element">
+                    <div class="number">{{ forloop.counter }}</div>
+                    <a href="{% url 'detail_teams' el.id %}" class="team-icon">
+                        <img src="{{ el.icon.url }}" alt="icon team" class="icon-team">
+                        <div class="team-name">{{ el.name }}</div>
+                    </a>
+                    <div class="game-block">
+                        <img class="game" src="{{ el.game.icon.url }}" alt="icon game">
+                    </div>
+                    <div class="statistic-inteams">
+                        <div class="statistic-block-inteams">
+                            <div class="count_of_matches-inteams">Всего матчей: {{ el.total_matches }}</div>
+                            <div class="progress-bar-inteams">
+                                <div class="progress-bar-inteams">
+                                    <div class="progress-segment wins-inteams" style="width: {{ el.win_percent|floatformat:0 }}%;"></div>
+                                    <div class="progress-segment draws-inteams" style="width: {{ el.draw_percent|floatformat:0 }}%;"></div>
+                                    <div class="progress-segment loses-inteams" style="width: {{ el.lose_percent|floatformat:0 }}%;"></div>
+                                </div>
+                            </div>
+                            <div class="stats-text-inteams">
+                                <span class="wins-inteams">{{ el.indicators.wins }} ({{ el.win_percent|floatformat:0 }}%)</span> /
+                                <span class="draws-inteams">{{ el.indicators.draws }} ({{ el.draw_percent|floatformat:0 }}%)</span> /
+                                <span class="loses-inteams">{{ el.indicators.loses }} ({{ el.lose_percent|floatformat:0 }}%)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prize">$ {{ el.prize|intcomma}}</div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div style="text-align: center; color: black;">Команд нет</div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,146 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.main_tour .name-description {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 8px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.name-description h3 {
+    color: black;
+    font-size: 35px;
+    width: 100%;
+    text-align: center;
+}
+
+.name-description .description {
+    color: black;
+    width: 100%;
+    font-size: 15px;
+}
+
+.main_tour .date-prize-location {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+    flex-direction: row;
+    padding: 15px;
+    border-radius: 5px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.date-prize-location .location,
+.date-prize-location .prize,
+.date-prize-location .date {
+    color: black;
+    flex: 1;
+}
+
+.date-prize-location img {
+    max-width: 35px;
+    flex: 1;
+}
+
+.info-teams {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.main_tour .info-team {
+    display: block;
+    background-color: rgb(255, 255, 255);
+    margin: 10px;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 8px;
+    width: calc(33.333% - 20px);
+    height: auto;
+    justify-content: left;
+    color:black;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .main_tour .info-team {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .main_tour .info-team {
+        width: 100%;
+    }
+}
+
+.info-team .block-icon-name {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.info-team .team-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.info-team .players .icon-members {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+}
+
+.members {
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.main_tour .row .date-prize-location .prize .prize-text,
+.main_tour .row .date-prize-location .location .location-text,
+.main_tour .row .date-prize-location .date .date-text {
+    color: #888888;
+}
+
+.main_tour .row .date-prize-location .prize .pt-info,
+.main_tour .row .date-prize-location .location .lt-info,
+.main_tour .row .date-prize-location .date .dt-info {
+    font-weight: 500;
+}
+
+.main_tour .players .row-fio-nick {
+    display: flex;
+    flex-direction: row;
+}
+
+.main_tour .row-fio-nick .nickname {
+    font-weight: 500;
+}
+
+.main_tour .players .icon-team-rfn {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.main_tour .info-team .players {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+

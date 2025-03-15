@@ -1,0 +1,68 @@
+.registration-form {
+    float: left;    
+    max-width: 400px;
+    width: 100%;
+    margin-left: 50%;
+    margin-top: 6%;
+    background-color: #ffffff0d;
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    color: white;
+    border: 2px solid #d1d1d1;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 5%
+}
+
+.registration-form .form-group {
+    margin-bottom: 15px;
+}
+
+.registration-form .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+}
+
+.registration-form .form-control:focus {
+    border-color: #80bdff;
+    outline: none;
+}
+
+.registration-form .btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.registration-form .btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.registration-form .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.error-list {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.error-list ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+
+/* Vlad_moder Vladislav481 Vlad_user Porol00991_1  */

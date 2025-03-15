@@ -1,0 +1,144 @@
+main .main_news {
+    float: left;
+    width: 75%;
+    text-align: center;
+    margin-left: 24%;
+}
+
+/* 181818de */
+
+main .main_news .this_news {
+    background-color: #ffffff0d;
+    margin-left: 200px;
+    max-width: 69%;
+    border-radius: 8px;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 2px solid #d1d1d1;
+    clear: both;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    color: white;
+    backdrop-filter: blur(20px);
+}
+
+main .main_news .this_news:hover {
+    transform: scale(1.01);
+}
+
+main .main_news .this_news:hover .icon_game {
+    opacity: 1;
+}
+
+main .main_news h3 {
+    max-width: 70%;
+    text-align: left;
+    margin-left: 130px;
+    margin-right: 130px;
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+main .main_news .image_news {
+    max-width: 643px;
+    min-width: 643px;
+    max-height: 350px;
+    min-height: 350px;
+    object-fit: cover;
+    float: left;
+    margin-left: 130px;
+    margin-top: 10px;
+}
+
+main .main_news .icon_game {
+    max-width: 65px;
+    min-width: 65px;
+    max-height: 65px;   
+    min-height: 65px;
+    object-fit: cover;
+    position: absolute;
+    top: 23px;
+    left: 34px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: 3px;
+    opacity: .6;
+    transition: opacity 0.3s ease;
+}
+
+main .main_news p {
+    margin-top: 390px;
+    text-align: right;
+    max-width: 200px;
+    margin-left: 573px;
+    opacity: 0.7;
+}
+
+a.this_news {
+    display: block;
+}
+
+main .main_news a {
+    text-decoration: none;
+}
+
+.main_news .game-filters {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 98%;
+    margin-left: 20px;
+    gap: 10px;
+    background-color: #ffffff0d;
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px solid #d1d1d1;
+    backdrop-filter: blur(20px);
+}
+
+.main_news .game-icon {
+    width: 60px;
+    transition: transform 0.3s ease;
+}
+
+.main_news .game-icon:hover {
+    transform: scale(1.02);
+}
+
+.main_news .game-filter {
+    margin: 0 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.main_news .game-filter img {
+    width: 60px;
+    border-radius: 5px;
+    filter: grayscale(100%);
+    transition: filter 0.2s ease;
+}
+
+.main_news .game-filter.active img {
+    filter: grayscale(0);
+}
+
+.main_news .reset-filter img {
+    width: 20px;
+    height: auto;
+    border-radius: 5px;
+    filter: grayscale(0);
+    transition: transform 0.3s ease;
+}
+
+.main_news .reset-filter img:hover {
+    transform: scale(1.10);
+}
+
+.main_news .reset-filter.active img {
+    filter: grayscale(100%);
+}

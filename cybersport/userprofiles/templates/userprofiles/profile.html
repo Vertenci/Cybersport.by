@@ -1,0 +1,155 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}{{ user_profile.username }}{% endblock %}
+
+{% block content %}
+    <div class="profile">
+        <h2>Профиль пользователя</h2>
+        <div class="info">
+            <div class="name">
+                <div class="name-text">Имя:&nbsp</div>
+                <div class="first_name-info">{{ user_profile.first_name }}</div>
+                <button class="edit-btn" data-field="first_name">Изменить</button>
+                <div class="edit-section" style="display: none;">
+                    <input type="text" name="first_name" class="edit-input" required>
+                    <button class="save-btn">Сохранить</button>
+                    <button class="cancel-btn">Отменить</button>
+                </div>
+            </div>
+            <div class="last-name">
+                <div class="last-name-text">Фамилия:&nbsp</div>
+                <div class="last_name-info">{{ user_profile.last_name }}</div>
+                <button class="edit-btn" data-field="last_name">Изменить</button>
+                <div class="edit-section" style="display: none;">
+                    <input type="text" name="last_name" class="edit-input" required>
+                    <button class="save-btn">Сохранить</button>
+                    <button class="cancel-btn">Отменить</button>
+                </div>
+            </div>
+            <div class="username">
+                <div class="username-text">Имя пользователя:&nbsp</div>
+                <div class="ut-info {% if user_profile.is_staff %}admin-username{% endif %}">{{ user_profile.username }}</div>
+            </div>
+            <div class="email">
+                <div class="email-text">Email:&nbsp</div>
+                <div class="email-info">{{ user_profile.email }}</div>
+                <button class="edit-btn" data-field="email">Изменить</button>
+                <div class="edit-section" style="display: none;">
+                    <input type="email" name="email" class="edit-input" required>
+                    <button class="save-btn">Сохранить</button>
+                    <button class="cancel-btn">Отменить</button>
+                </div>
+            </div>
+            <div class="registration-date">
+                <div class="registration-text">Дата регистрации:&nbsp</div>
+                <div class="registration-info">{{ registration_date }}</div>
+            </div>
+            <div class="session-timer">
+                <div class="timer-text">Время текущей сессии:&nbsp</div>
+                <div class="timer-info" id="session-timer">00:00:00</div>
+            </div>
+            {% if user_groups %}
+                <div class="groups">
+                    <div class="groups-text">Группы:</div>
+                    <div class="groups-list">
+                        {% for group in user_groups %}
+                            <div class="group-info">{{ group.name }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+            {% if user_permissions %}
+                <div class="permissions">
+                    <div class="permissions-text">Доступные права:</div>
+                    <div class="permissions-list">
+                        {% for permission in user_permissions %}
+                            <div class="p-info">{{ permission }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button class="btn btn-danger" type="submit">Выйти</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+
+        $('.edit-btn').on('click', function() {
+            const field = $(this).data('field');
+            const info = $('.' + field + '-info');
+            const editSection = $(this).siblings('.edit-section');
+
+            $(this).hide();
+            editSection.show();
+            editSection.find('input[name="' + field + '"]').val(info.text().trim());
+        });
+
+        $('.cancel-btn').on('click', function() {
+            const editSection = $(this).parent('.edit-section');
+            const editBtn = editSection.siblings('.edit-btn');
+
+            editSection.hide();
+            editBtn.show();
+        });
+
+        $('.save-btn').on('click', function(event) {
+            event.preventDefault();
+            const editSection = $(this).parent('.edit-section');
+            const field = $(this).siblings('input').attr('name');
+            const newValue = editSection.find('input[name="' + field + '"]').val();
+
+            $.ajax({
+                url: "{% url 'update_profile' %}",
+                type: 'POST',
+                data: {
+                    [field]: newValue,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    $('.' + field + '-info').text(response[field]);
+                    alert('Данные успешно обновлены!');
+                    editSection.hide();
+                    editSection.siblings('.edit-btn').show();
+                },
+                error: function(xhr) {
+                    alert('Произошла ошибка при обновлении данных.');
+                }
+            });
+        });
+    });
+    </script>
+<script>
+$(document).ready(function () {
+    const storageKey = 'sessionTime';
+    let seconds = 0
+
+    if (localStorage.getItem(storageKey)) {
+        seconds = parseInt(localStorage.getItem(storageKey), 10);
+    }
+
+    function updateTimer() {
+        seconds++;
+        const hours = String(Math.floor(seconds / 3600)).padStart(2, '0');
+        const minutes = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+        const remainingSeconds = String(seconds % 60).padStart(2, '0');
+        $('#session-timer').text(`${hours}:${minutes}:${remainingSeconds}`);
+
+        localStorage.setItem(storageKey, seconds);
+    }
+
+    setInterval(updateTimer, 1000);
+
+    $('form[action="{% url 'logout' %}"]').on('submit', function () {
+        localStorage.removeItem(storageKey);
+    });
+
+    updateTimer();
+});
+</script>
+{% endblock %}

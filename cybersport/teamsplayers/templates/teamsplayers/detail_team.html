@@ -1,0 +1,121 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% load humanize %}
+{% load custom_tags %}
+{% block title %}{{ team.name }}{% endblock %}
+
+{% block content %}
+    <div class="detail-team">
+        <div class="main-info">
+            <div class="icon-team">
+                <img src="{{ team.icon.url }}" alt="team icon" class="team_icon">
+            </div>
+            <div class="all-info">
+                <div class="name">{{ team.name }} по {{ team.game.name }}</div>
+                <div class="info">
+                    <div class="site">
+                        <div class="site-text">Сайт</div>
+                        <a href="{{ team.site }}" class="st-info">{{ team.site }}</a>
+                    </div>
+                    <div class="date-foundation">
+                        <div class="date-foundation-text">Дата основания</div>
+                        <div class="dtt-info">в {{ team.founding_date|date:"Y" }} году</div>
+                    </div>
+                    <div class="country">
+                        <div class="county-text">Страна</div>
+                        <div class="ct-info">
+                            {{ team.country }}
+                            <img src="{{ team.icon_country.url }}" alt="team-country" class="team-country">
+                        </div>
+                    </div>
+                    <div class="prize">
+                        <div class="prize-text">Призовые</div>
+                        <div class="pt-info">$ {{ team.prize|intcomma }}</div>
+                    </div>
+                </div>
+                <div class="description">
+                    {{ team.team_history }}
+                </div>
+                <div class="statistic">
+                    <div class="statistic-block">
+                        <div class="count_of_matches">Всего матчей: {{ team.total_matches }}</div>
+                        <div class="progress-bar">
+                            <div class="progress-bar">
+                                <div class="progress-segment wins" style="width: {{ team.win_percent|floatformat:0 }}%;"></div>
+                                <div class="progress-segment draws" style="width: {{ team.draw_percent|floatformat:0 }}%;"></div>
+                                <div class="progress-segment loses" style="width: {{ team.lose_percent|floatformat:0 }}%;"></div>
+                            </div>
+                        </div>
+                        <div class="stats-text">
+                            <span class="wins">{{ team.wins }} ({{ team.win_percent|floatformat:0 }}%)</span>
+                            <span class="draws">{{ team.draws }} ({{ team.draw_percent|floatformat:0 }}%)</span>
+                            <span class="loses">{{ team.loses }} ({{ team.lose_percent|floatformat:0 }}%)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="organization">
+                <div class="name-block">Организация</div>
+                <div class="icon-name">
+                    <img src="{{ team.icon.url }}" alt="icon game" class="icon-team-organization">
+                    <div class="name-team">{{ team.name }}</div>
+                </div>
+                <div class="team-games">
+                    <div class="team-games-text">Команды по дисциплинам:</div>
+                    <img src="{{ team.game.icon.url }}" alt="icon game" class="icon-game-team-games">
+                </div>
+            </div>
+        </div>
+
+        <div class="members">
+            <div class="composition">Состав команды</div>
+            <div class="table">
+                {% if team.players %}
+                    {% for player in team.players.all %}
+                        <a href="{% url 'detail_players' player.id %}" class="element">
+                            <div class="some-photo"><img src="{{ player.photo.url }}" alt="photo" class="photo"></div>
+                            <div class="nickname-fio">
+                                <div class="country-nickname">
+                                    <img src="{{ player.icon_country.url }}" alt="icon country" class="country-player">
+                                    <div class="nickname">{{ player.nickname }}</div>
+                                </div>
+                                <div class="fio">{{ player.fio }}</div>
+                            </div>
+                            <div class="date-joined">
+                                <div class="date-joined-text">Игрок</div>
+                                {% with history=team.player_history|get_item:player.id %}
+                                    {% if history %}
+                                        <div class="djt-info">с {{ history.date_joined|date:"d.m.Y" }}</div>
+                                    {% else %}
+                                        <div class="djt-info">Не в команде</div>
+                                    {% endif %}
+                                {% endwith %}
+                            </div>
+                            <div class="statistic-players">
+                                <div class="statistic-block-players">
+                                    {% with team.player_stats|get_item:player.id as player_stats %}
+                                        <div class="count_of_matches-players">Всего матчей: {{ player_stats.total_matches }}</div>
+                                        <div class="progress-bar-players">
+                                            <div class="progress-bar-players">
+                                                <div class="progress-segment wins-players" style="width: {{ player_stats.win_percent|floatformat:0 }}%;"></div>
+                                                <div class="progress-segment draws-players" style="width: {{ player_stats.draw_percent|floatformat:0 }}%;"></div>
+                                                <div class="progress-segment loses-players" style="width: {{ player_stats.lose_percent|floatformat:0 }}%;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="stats-text-players">
+                                            <span class="wins-players">{{ player_stats.wins }} ({{ player_stats.win_percent|floatformat:0 }}%)</span>
+                                            <span class="draws-players">{{ player_stats.draws }} ({{ player_stats.draw_percent|floatformat:0 }}%)</span>
+                                            <span class="loses-players">{{ player_stats.loses }} ({{ player_stats.lose_percent|floatformat:0 }}%)</span>
+                                        </div>
+                                    {% endwith %}
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <div style="text-align: center; color: black;">Игроков нет</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

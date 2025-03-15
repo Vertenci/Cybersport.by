@@ -1,0 +1,71 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}{{ player.nickname }}{% endblock %}
+
+{% block content %}
+    <div class="detail-player">
+        <div class="photo-about-team">
+            <div class="photo">
+                <img src="{{ player.photo.url }}" alt="photo player" class="photo-player">
+            </div>
+            <div class="about">
+                <div class="icon-game-nickname">
+                    <img src="{{ player.game.icon.url }}" alt="icon game" class="icon-game">
+                    <div class="nickname">{{ player.nickname }}</div>
+                </div>
+                <div class="name-age-birth">
+                    <div class="fio">
+                        <div class="fio-text">Имя</div>
+                        <div class="ft-info">{{ player.fio }}</div>
+                    </div>
+                    <div class="age">
+                        <div class="age-text">Возраст</div>
+                        <div class="at-info">{{ player.age }} лет</div>
+                    </div>
+                    <div class="birth">
+                        <div class="birth-text">Дата рождения</div>
+                        <div class="bt-info">{{ player.datebirth }}</div>
+                    </div>
+                </div>
+                <div class="country-prize">
+                    <div class="country">
+                        <div class="country-text">Страна</div>
+                        <div class="ct-info">
+                            {{ player.country }}
+                            <img src="{{ player.icon_country.url }}" alt="country icon" class="country-icon">
+                        </div>
+                    </div>
+                    <div class="prize">
+                        <div class="prize-text">Призовые</div>
+                        <div class="pt-info">$ {{ player.sum_prize|intcomma }}</div>
+                    </div>
+                </div>
+                <p class="description">{{ player.description }}</p>
+                <div class="statistic">
+                    <div class="statistic-block">
+                        <div class="count_of_matches">Всего матчей: {{ player.total_matches }}</div>
+                        <div class="progress-bar">
+                            <div class="progress-bar">
+                                <div class="progress-segment wins" style="width: {{ player.win_percent|floatformat:0 }}%;"></div>
+                                <div class="progress-segment draws" style="width: {{ player.draw_percent|floatformat:0 }}%;"></div>
+                                <div class="progress-segment loses" style="width: {{ player.lose_percent|floatformat:0 }}%;"></div>
+                            </div>
+                        </div>
+                        <div class="stats-text">
+                            <span class="wins">{{ player.wins }} ({{ player.win_percent|floatformat:0 }}%)</span>
+                            <span class="draws">{{ player.draws }} ({{ player.draw_percent|floatformat:0 }}%)</span>
+                            <span class="loses">{{ player.loses }} ({{ player.lose_percent|floatformat:0 }}%)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="team">
+                <div class="icon-name">
+                    <img src="{{ player.team.icon.url }}" alt="team icon" class="icon-team">
+                    <div class="name">{{ player.team.name }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,161 @@
+.block-context .teams_block {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    padding: 15px;
+    margin: 5px 5px 0px 5px;
+    width: calc(100% - 10px);
+    transition: transform 0.2s ease;
+    text-decoration: none;
+    color: black;
+    flex-direction: column;
+}
+
+.main-features .block-context .table {
+    display: flex;
+    flex-direction: row;
+    padding-left: 2%;
+}
+
+.table .row-team {
+    width: calc(35%);
+}
+
+.table .row-game {
+    width: calc(10%);
+    text-align: center;
+}
+
+.table .row-statistic {
+    width: calc(35%);
+    text-align: center;
+}
+
+.table .row-prize {
+    width: calc(20%);
+    text-align: center;
+}
+
+.table .row-player,
+.table .row-team,
+.table .row-game,
+.table .row-statistic,
+.table .row-prize {
+    font-size: 13px;
+    color: #888888;
+    padding-bottom: 5px;
+}
+
+.teams_block .element {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #d7d7d7;
+    margin-bottom: 10px;
+    padding-top: 5px;
+    align-items: center;
+}
+
+.element .number {
+    width: calc(2%);
+    color: #888888;
+}
+
+.element .team-icon {
+    display: flex;
+    text-align: center;
+    width: calc(35%);
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    transition: color .2s ease;
+}
+
+.element .team-icon:hover {
+    color: #00b527;
+}
+
+.teams_block .game-block {
+    width: calc(10%);
+    text-align: center;
+}
+
+.element .statistic-inteams {
+    width: calc(35%);
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.element .prize {
+    width: calc(20%);
+    text-align: center;
+}
+
+.team-icon .icon-team {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
+
+.team-icon .team-name {
+    margin-left: 10px;
+}
+
+.element .game {
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
+}
+
+.progress-bar-inteams {
+    width: 100%;
+    height: 10px;
+    border-radius: 8px;
+    display: flex;
+    overflow: hidden;
+    flex-direction: row;
+    background-color: #e0e0e0;
+}
+
+.teams_block .progress-segment-inteams {
+    height: 100%;
+    display: inline-block;
+    
+}
+
+.teams_block .progress-segment.wins-inteams {
+    background-color: #4caf50;
+}
+
+.teams_block .progress-segment.loses-inteams {
+    background-color: #f44336;
+}
+
+.teams_block .progress-segment.draws-inteams {
+    background-color: #888888;
+}
+
+.teams_block .stats-text-inteams {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.teams_block .stats-text-inteams .wins-inteams {
+    color: #4caf50;
+}
+
+.teams_block .stats-text-inteams .loses-inteams {
+    color: #f44336;
+}
+
+.teams_block .stats-text-inteams .draws-inteams {
+    color: #888888;
+}
+
+.teams_block .count_of_matches-inteams {
+    color: #888888;
+    font-size: 14px;
+}

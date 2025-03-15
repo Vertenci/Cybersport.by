@@ -1,0 +1,70 @@
+aside {
+    top: 0;
+}
+
+.main-features {
+    float: left;
+    max-width: 66%;
+    width: 100%;
+    margin-left: 29%;
+    margin-bottom: 75px;
+    margin-top: 75px;
+    background-color: rgb(226, 226, 226);
+    padding: 20px;
+    padding-top: 10px;
+    border: 2px solid #737373;
+    border-radius: 8px;
+}
+
+.main-features .title {
+    color: black;
+    text-align: center;
+    font-size: 35px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.main-features .filter-tabs {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid #686868;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.main-features .filter-tab {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+    position: relative;
+    padding: 5px 10px;
+    transition: color 0.2s ease;
+}
+
+.main-features .filter-tab.active {
+    color: #0f6f05;
+}
+
+.main-features .filter-tab:hover {
+    color: #00b527;
+}
+
+.main-features .filter-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #00b527;
+}
+
+.main-features .block-context {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-direction: column;
+}

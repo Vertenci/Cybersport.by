@@ -1,0 +1,37 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}Новости{% endblock %}
+
+{% block content %}
+    <div class="main_news">
+        {% if articles %}
+            {% if games %}
+                <div class="game-filters">
+                    <a href="?" class="game-filter reset-filter {% if not selected_game_id %}active{% endif %}">
+                        <img src="{% static 'matches/img/news.png' %}" alt="Сбросить фильтр">
+                    </a>
+
+                    {% for game in games %}
+                        <a href="?game_id={{ game.id }}{% if filter_type %}&filter={{ filter_type }}{% endif %}"
+                           class="game-filter {% if game.id == selected_game_id %}active{% endif %}">
+                            <img src="{{ game.icon.url }}" alt="{{ game.name }}" class="game-icon">
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="row">
+                {% for el in articles %}
+                    <a href="{% url 'detail_news' el.id %}" class="this_news">
+                        <h3>{{ el.title }}</h3>
+                        <img class="image_news" src="{{ el.image.url  }}" alt="image">
+                        <img class="icon_game" src="{{ el.game.icon.url  }}" alt="icon">
+                        <p>{{ el.date }}</p>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Новостей нет</p>
+        {% endif %}
+    </div>
+
+{% endblock %}

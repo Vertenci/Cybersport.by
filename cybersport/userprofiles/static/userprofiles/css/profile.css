@@ -1,0 +1,171 @@
+.profile {
+    max-width: 1000px;
+    background-color: #ffffff0d;
+    border: 2px solid #d1d1d1;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    font-family: Arial, sans-serif;
+    margin-left: 33%;
+    margin-top: 7%;
+    margin-bottom: 7%;
+    backdrop-filter: blur(30px);
+}
+
+.profile h2 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.profile .info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.profile .info div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.profile .last-name,
+.profile .username,
+.profile .email,
+.profile .groups,
+.profile .permissions,
+.profile .registration-date,
+.profile .session-timer,
+.profile .name {
+    color: white;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.profile .info div:last-child {
+    border-bottom: none;
+}
+
+.profile .name-text,
+.profile .last-name-text,
+.profile .username-text,
+.profile .groups-text,
+.profile .permissions-text,
+.profile .registration-text,
+.profile .timer-text,
+.profile .email-text {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.profile .edit-btn {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.profile .edit-btn:hover {
+    background-color: #4cae4c;
+}
+
+.profile .edit-section {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.profile .edit-input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    flex-grow: 1;
+    min-width: 200px;
+}
+
+.profile .save-btn,
+.profile .cancel-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.profile .save-btn:hover {
+    background-color: #0056b3;
+}
+
+.profile .cancel-btn {
+    background-color: #dc3545;
+    margin-left: 10px;
+}
+
+.profile .cancel-btn:hover {
+    background-color: #c82333;
+}
+
+.admin-username {
+    color: red;
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .profile {
+        width: 90%;
+        margin-left: 5%;
+    }
+}
+
+.profile .permissions-list {
+    display: flex;
+    flex-direction: column;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: rgba(209, 209, 209, 0.084);
+    border-radius: 8px;
+    margin: 0;
+    backdrop-filter: blur(50px);
+}
+
+.profile .p-info {
+    margin: 0;
+    border-radius: 4px;
+    width: 100%;
+    display: inline-block;
+    border-bottom: 1px solid #909590;
+}
+
+.profile .permissions {
+    margin-top: 10px;
+}
+
+.profile .groups-list {
+    display: flex;
+    flex-direction: column;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: rgba(209, 209, 209, 0.084);
+    backdrop-filter: blur(50px);
+    border-radius: 8px;
+    margin: 0;
+}
+
+.profile .group-info {
+    margin: 0;
+    border-radius: 4px;
+    width: 100%;
+    display: inline-block;
+    border-bottom: 1px solid #909590;
+}
+
+.profile .groups {
+    margin-top: 10px;
+}

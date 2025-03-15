@@ -1,0 +1,34 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}Турниры{% endblock %}
+
+{% block content %}
+    <div class="main_tour">
+        <h3 class="title">Турниры</h3>
+        {% if tournaments %}
+            <div class="row">
+                {% for el in tournaments %}
+                    <a href="{% url 'detail_tour' el.id %}" class="tournament-card">
+                        <div class="tournament-info">
+                            <img src="{{ el.game.icon.url }}" alt="game" class="tournament-icon">
+                            <h3>{{ el.name }}</h3>
+                        </div>
+                        <div class="date">
+                            <div class="name-block">Дата проведения:&nbsp</div>
+                            <div class="some-date">
+                                {{ el.start_date|date:"d.m.Y" }} - {{ el.end_date|date:"d.m.Y" }}
+                            </div>
+                        </div>
+                        <div class="sum_prize">
+                            <div class="name-block">Сумма призовых:&nbsp</div>
+                            <div class="some-prize">$ {{ el.sum_prize|intcomma }}</div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p style="color: white">Турниров нет</p>
+        {% endif %}
+    </div>
+{% endblock %}

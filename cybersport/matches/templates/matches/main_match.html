@@ -1,0 +1,89 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}Матчи{% endblock %}
+
+{% block content %}
+    <div class="main_matches">
+        <h3 class="title">Матчи</h3>
+
+        <!-- Фильтры по дате -->
+        <div class="filter-tabs">
+            <a href="?filter=past{% if selected_game_id %}&game_id={{ selected_game_id }}{% endif %}"
+                class="filter-tab {% if filter_type == 'past' %}active{% endif %}">
+                ПРОШЕДШИЕ
+            </a>
+            <a href="?filter=live{% if selected_game_id %}&game_id={{ selected_game_id }}{% endif %}"
+                class="filter-tab {% if filter_type == 'live' %}active{% endif %}">
+                LIVE
+            </a>
+            <a href="?filter=future{% if selected_game_id %}&game_id={{ selected_game_id }}{% endif %}"
+                class="filter-tab {% if filter_type == 'future' %}active{% endif %}">
+                БУДУЩИЕ
+            </a>
+        </div>
+
+        <!-- Фильтры по играм -->
+        <div class="game-filters">
+            <a href="?" class="game-filter reset-filter {% if not selected_game_id and not filter_type %}active{% endif %}">
+                <img src="{% static 'matches/img/free-icon-cancel-271203.png' %}" alt="Сбросить фильтр">
+            </a>
+
+            {% for game in games %}
+                <a href="?game_id={{ game.id }}{% if filter_type %}&filter={{ filter_type }}{% endif %}"
+                    class="game-filter {% if game.id == selected_game_id %}active{% endif %}">
+                    <img src="{{ game.icon.url }}" alt="{{ game.name }}">
+                </a>
+            {% endfor %}
+        </div>
+
+        <!-- Список матчей -->
+        <div id="matches-container">
+            {% if matches %}
+                {% regroup matches by date|date:"Y-m-d" as grouped_matches %}
+                {% for group in grouped_matches %}
+                    <h4 class="date-header">{{ group.grouper }}</h4>
+                    <div class="row">
+                        {% for match in group.list %}
+                            <a href="{% url 'detail_match' match.id %}" class="match-card">
+                                <div class="matches-info">
+                                    <div class="icon-time">
+                                        <img src="{{ match.game.icon.url }}" alt="game-icon" class="game-icon">
+                                        <div class="date-time">{{ match.date|date:"H:i" }}</div>
+                                    </div>
+                                    <div class="teams-score">
+                                        <div class="team">
+                                            <img src="{{ match.team_one.icon.url }}" alt="team_one icon" class="team-icon">
+                                            {{ match.team_one.name }}
+                                        </div>
+                                        <div class="vs">
+                                            {% if match.date.date > today %}
+                                                vs
+                                            {% elif match.date.date == today %}
+                                                0:0
+                                            {% else %}
+                                                {{ match.score }}
+                                            {% endif %}
+                                        </div>
+                                        <div class="team">
+                                            <img src="{{ match.team_two.icon.url }}" alt="team_two icon" class="team-icon">
+                                            {{ match.team_two.name }}
+                                        </div>
+                                    </div>
+                                    <div class="tournament">{{ match.tournament.name }}</div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-matches">Матчей нет</p>
+            {% endif %}
+        </div>
+
+        {% if has_more %}
+            <button id="load-more" class="load-more">Показать еще</button>
+        {% endif %}
+    </div>
+
+{% endblock %}

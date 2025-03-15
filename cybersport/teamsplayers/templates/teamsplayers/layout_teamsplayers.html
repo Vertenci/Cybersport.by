@@ -1,0 +1,42 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}Команды и игроки{% endblock %}
+
+{% block content %}
+    <div class="main-features">
+        <h3 class="title">{% block title_features %}{% endblock %}</h3>
+        <div class="filter-tabs">
+            <a href="{% url 'teams' %}"
+                class="filter-tab {% if request.resolver_match.url_name == 'teams' %}active{% endif %}">
+                КОМАНДЫ
+            </a>
+            <a href="{% url 'players' %}"
+                class="filter-tab {% if request.resolver_match.url_name == 'players' %}active{% endif %}">
+                ИГРОКИ
+            </a>
+        </div>
+        <div class="game-filters">
+            <!-- Сброс фильтра -->
+            <a href="?" class="game-filter reset-filter {% if not selected_game_id %}active{% endif %}">
+                <img src="{% static 'matches/img/free-icon-cancel-271203.png' %}" alt="Сбросить фильтр">
+            </a>
+
+            <!-- Фильтры по играм -->
+            {% for game in games %}
+                <a href="?game_id={{ game.id }}{% if filter_type %}&filter={{ filter_type }}{% endif %}"
+                   class="game-filter {% if game.id == selected_game_id %}active{% endif %}">
+                    <img src="{{ game.icon.url }}" alt="{{ game.name }}">
+                </a>
+            {% endfor %}
+        </div>
+
+        <div class="block-context">
+            {% block context %}
+
+            {% endblock %}
+        </div>
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'news/css/main_news.css' %}">
+    <link rel="stylesheet" href="{% static 'news/css/detail_news.css' %}">
+    <link rel="stylesheet" href="{% static 'tournaments/css/tour_details.css' %}">
+    <link rel="stylesheet" href="{% static 'tournaments/css/tour_main.css' %}">
+    <link rel="stylesheet" href="{% static 'matches/css/matches_main.css' %}">
+    <link rel="stylesheet" href="{% static 'matches/css/matches_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'teamsplayers/css/main_features.css' %}">
+    <link rel="stylesheet" href="{% static 'teamsplayers/css/teams_page.css' %}">
+    <link rel="stylesheet" href="{% static 'teamsplayers/css/players_page.css' %}">
+    <link rel="stylesheet" href="{% static 'teamsplayers/css/detail_players.css' %}">
+    <link rel="stylesheet" href="{% static 'teamsplayers/css/detail_teams.css' %}">
+    <link rel="stylesheet" href="{% static 'teamsplayers/css/members.css' %}">
+    <link rel="stylesheet" href="{% static 'userprofiles/css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/loader.css' %}">
+    <link rel="stylesheet" href="{% static 'userprofiles/css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'userprofiles/css/register.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.7.2/css/all.css">
+</head>
+<body>
+<!--{% include 'main/loader.html' %}-->
+    <aside>
+        <img src="{% static 'main/img/logo.png' %}" alt="Лого">
+        <span class="logo">CYBERSPORT.BY</span>
+        <ul>
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}"><li><i class="fa-regular fa-id-badge"></i>&nbspПрофиль</li></a>
+            {% else %}
+                <a href="{% url 'login' %}"><li><i class="fa-solid fa-user"></i>&nbspВойти</li></a>
+            {% endif %}
+            <a href="{% url 'news_home' %}"><li><i class="fa-solid fa-newspaper"></i>&nbspНовости</li></a>
+            <a href="{% url 'tour_home' %}"><li><i class="fa-solid fa-trophy"></i>&nbspТурниры</li></a>
+            <a href="{% url 'teams' %}"><li><i class="fa-solid fa-people-group"></i>&nbspКоманды и игроки</li></a>
+            <a href="{% url 'home-matches' %}"><li><i class="fa-solid fa-gamepad"></i>&nbspМатчи</li></a>
+            {% if user.is_staff  %}
+                <a href="{% url 'admin:index' %}"><li class="admin-panel"><i class="fa-solid fa-toolbox"></i>&nbspАдмин панель</li></a>
+            {% endif %}
+        </ul>
+    </aside>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <script src="{% static 'matches/js/load_more.js' %}"></script>
+    <script src="{% static 'main/js/loader.js' %}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.style.backgroundImage = "url('{% static 'main/img/backg.png' %}')";
+        });
+    </script>
+</body>
+</html>
