@@ -15,11 +15,11 @@ class Matches(models.Model):
     score = models.CharField('Счёт', max_length=35)
 
     def __str__(self):
-        return (f"Матч: {self.team_one} vs {self.team_two} | "
-                f"Игра: {self.game} | "
-                f"Турнир: {self.tournament} | "
+        return (f"Матч: {self.team_one.name} vs {self.team_two.name} | "
+                f"Игра: {self.game.name} | "
+                f"Турнир: {self.tournament.name} | "
                 f"Дата: {self.date} | "
-                f"Счёт: {self.score} | ")
+                f"Счёт: {self.score} |")
 
     class Meta:
         verbose_name = 'Матч'
