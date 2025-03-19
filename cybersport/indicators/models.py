@@ -10,10 +10,10 @@ class Indicators(models.Model):
     tournament = models.ForeignKey(Tournaments, on_delete=models.SET_NULL, null=True, blank=True)
     match = models.ForeignKey(Matches, on_delete=models.SET_NULL, null=True, blank=True)
 
-    wins = models.IntegerField('Количество побед')
-    loses = models.IntegerField('Количество поражений')
-    draws = models.IntegerField('Количество ничей')
-    achievements = models.TextField('Достижения')
+    wins = models.IntegerField('Количество побед', blank=True, null=True)
+    loses = models.IntegerField('Количество поражений', blank=True, null=True)
+    draws = models.IntegerField('Количество ничей', blank=True, null=True)
+    achievements = models.TextField('Достижения', blank=True, null=True)
 
     def __str__(self):
         return str(self.team)

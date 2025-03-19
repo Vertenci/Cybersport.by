@@ -3,8 +3,11 @@ from django.shortcuts import render
 from django.views.generic import DetailView
 from bll.Matches_bll import MatchesBLL
 from bll.Games_bll import GamesBLL
+from rest_framework.response import Response
 from .models import Matches
 from django.http import JsonResponse
+from rest_framework import viewsets, status
+from .serializers import MatchesSerializer
 
 
 def match_home(request):
@@ -74,3 +77,50 @@ class MatchesDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['today'] = date.today()
         return context
+
+
+class MatchesApiView(viewsets.ModelViewSet):
+    serializer_class = MatchesSerializer
+    http_method_names = ['get', 'post', 'put', 'patch', 'delete']
+
+    class Meta:
+        tags = ['Matches']
+
+    def get_queryset(self):
+        matches_bll = MatchesBLL()
+        return matches_bll.fetch_all_matches()
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            match = serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
+
+    def destroy(self, request, *args, **kwargs):
+        matches_bll = MatchesBLL()
+        match_instance = matches_bll.get_match(kwargs['pk'])
+        if match_instance:
+            matches_bll.delete_match(match_instance.id)
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+
+    def update(self, request, *args, **kwargs):
+        matches_bll = MatchesBLL()
+        partial = kwargs.pop('partial', False)
+        match_instance = matches_bll.get_match(kwargs['pk'])
+        if match_instance:
+            serializer = self.get_serializer(match_instance, data=request.data, partial=partial)
+            if serializer.is_valid():
+                match = serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
+
+    def retrieve(self, request, *args, **kwargs):
+        matches_bll = MatchesBLL()
+        match = matches_bll.get_match(kwargs['pk'])
+        if match:
+            serializer = self.get_serializer(match)
+            return Response(serializer.data)
+        return Response({"detail": "Not found."}, status=404)
