@@ -3,4 +3,4 @@
 .idea/
 db.sqlite3
 .venv
-.node_modules
+.node_modules/
