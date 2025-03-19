@@ -1,0 +1,6 @@
+# created by virtualenv automatically
+*.рус
+.idea/
+db.sqlite3
+.venv
+.node_modules
