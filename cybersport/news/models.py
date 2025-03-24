@@ -13,7 +13,7 @@ class Articles(models.Model):
     image = models.ImageField(upload_to='news/news_images/', null=True, blank=True)
 
     def __str__(self):
-        return (f"{self.title} --- {self.game}")
+        return f"{self.title} --- {self.game}"
 
     class Meta:
         verbose_name = 'Новость'
