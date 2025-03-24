@@ -3,5 +3,8 @@
 .idea/
 db.sqlite3
 .venv
-.node_modules/
+node_modules/
 .cybersport/cybersport/
+cybersport/cybersport/settings.py
+cert.pem
+key.pem
