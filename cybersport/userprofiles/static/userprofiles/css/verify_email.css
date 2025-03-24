@@ -1,0 +1,38 @@
+.verification-form {
+    float: left;
+    max-width: 400px;
+    width: 100%;
+    margin-left: 50%;
+    margin-top: 13%;
+    background-color: #ffffff0d;
+    backdrop-filter: blur(10px);
+    padding: 20px 20px 10px 20px;
+    border: 2px solid #d1d1d1;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.verification-form label {
+    margin-bottom: 10px;
+}
+
+.verification-form input {
+    margin-bottom: 10px;
+}
+
+.verification-form .mt-3 {
+    margin-top: -10px;
+}
+
+.verification-form #resend-text {
+    cursor: pointer;
+    border-bottom: 1px solid #ffffff;
+    display: inline;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.verification-form #resend-text:hover {
+    color: gray;
+    border-color: gray;
+}

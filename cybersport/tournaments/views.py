@@ -19,4 +19,3 @@ class TournamentsDetailView(DetailView):
     def get_object(self, queryset=None):
         bll = TournamentsBLL()
         return bll.get_tournament(self.kwargs['pk'])
-
