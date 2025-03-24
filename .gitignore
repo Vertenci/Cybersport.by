@@ -1,7 +1,7 @@
 # created by virtualenv automatically
 *.рус
 .idea/
-db.sqlite3
+cybersport/db.sqlite3
 .venv
 node_modules/
 cybersport/cybersport/
