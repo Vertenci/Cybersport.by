@@ -10,5 +10,4 @@ class EmailVerificationCode(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def is_valid(self):
-        # Срок действия кода: 10 минут
         return now() < self.created_at + timedelta(minutes=10)
