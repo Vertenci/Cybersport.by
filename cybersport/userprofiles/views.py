@@ -1,3 +1,5 @@
+import re
+
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse
@@ -9,6 +11,9 @@ from django.contrib.auth import login, logout
 from django.views.decorators.csrf import csrf_exempt
 from .models import EmailVerificationCode
 from .tasks import send_verification_email
+
+
+VALID_NAME_REGEX = re.compile(r'[\w\s()-]+$')
 
 
 @login_required
@@ -28,10 +33,13 @@ def profile_home(request):
 def pre_login(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(data=request.POST)
+
         if form.is_valid():
             user = form.get_user()
             login(request, user)
             return redirect('news_home')
+        else:
+            messages.error(request, "Неверные данные для входа.")
     else:
         form = CustomAuthenticationForm()
     return render(request, 'userprofiles/login.html', {'form': form})
@@ -66,13 +74,13 @@ def update_profile(request):
     if request.method == 'POST':
         user = request.user
 
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        # email = request.POST.get('email')
+        first_name = request.POST.get('first_name', '').strip()
+        last_name = request.POST.get('last_name', '').strip()
+        # email = request.POST.get('email', '').strip()
 
-        if first_name is not None:
+        if first_name and len(first_name) < 100 and VALID_NAME_REGEX.match(first_name):
             user.first_name = first_name
-        if last_name is not None:
+        if last_name and len(last_name) < 100 and VALID_NAME_REGEX.match(last_name):
             user.last_name = last_name
         # if email is not None:
         #     user.email = email

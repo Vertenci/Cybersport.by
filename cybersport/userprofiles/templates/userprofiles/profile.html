@@ -78,51 +78,55 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-    $(document).ready(function() {
+        $(document).ready(function() {
+            $('.edit-btn').on('click', function() {
+                const field = $(this).data('field');
+                const info = $('.' + field + '-info');
+                const editSection = $(this).siblings('.edit-section');
 
-        $('.edit-btn').on('click', function() {
-            const field = $(this).data('field');
-            const info = $('.' + field + '-info');
-            const editSection = $(this).siblings('.edit-section');
+                $(this).hide();
+                editSection.show();
+                editSection.find('input[name="' + field + '"]').val(info.text().trim());
+            });
 
-            $(this).hide();
-            editSection.show();
-            editSection.find('input[name="' + field + '"]').val(info.text().trim());
-        });
+            $('.cancel-btn').on('click', function() {
+                const editSection = $(this).parent('.edit-section');
+                const editBtn = editSection.siblings('.edit-btn');
 
-        $('.cancel-btn').on('click', function() {
-            const editSection = $(this).parent('.edit-section');
-            const editBtn = editSection.siblings('.edit-btn');
+                editSection.hide();
+                editBtn.show();
+            });
 
-            editSection.hide();
-            editBtn.show();
-        });
+            $('.save-btn').on('click', function(event) {
+                event.preventDefault();
+                const editSection = $(this).parent('.edit-section');
+                const field = $(this).siblings('input').attr('name');
+                const newValue = editSection.find('input[name="' + field + '"]').val().trim();
 
-        $('.save-btn').on('click', function(event) {
-            event.preventDefault();
-            const editSection = $(this).parent('.edit-section');
-            const field = $(this).siblings('input').attr('name');
-            const newValue = editSection.find('input[name="' + field + '"]').val();
-
-            $.ajax({
-                url: "{% url 'update_profile' %}",
-                type: 'POST',
-                data: {
-                    [field]: newValue,
-                    csrfmiddlewaretoken: '{{ csrf_token }}'
-                },
-                success: function(response) {
-                    $('.' + field + '-info').text(response[field]);
-                    alert('Данные успешно обновлены!');
-                    editSection.hide();
-                    editSection.siblings('.edit-btn').show();
-                },
-                error: function(xhr) {
-                    alert('Произошла ошибка при обновлении данных.');
+                if (newValue === '' || newValue.length > 100 || !/^[а-яА-ЯёЁ\w\s()-]+$/.test(newValue)) {
+                    alert('Имя или фамилия недействительны. Пожалуйста, исправьте.');
+                    return;
                 }
+
+                $.ajax({
+                    url: "{% url 'update_profile' %}",
+                    type: 'POST',
+                    data: {
+                        [field]: newValue,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        $('.' + field + '-info').text(response[field]);
+                        alert('Данные успешно обновлены!');
+                        editSection.hide();
+                        editSection.siblings('.edit-btn').show();
+                    },
+                    error: function(xhr) {
+                        alert('Произошла ошибка при обновлении данных.');
+                    }
+                });
             });
         });
-    });
     </script>
 <script>
 $(document).ready(function () {
